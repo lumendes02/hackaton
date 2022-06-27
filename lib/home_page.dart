@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
       width: 100,
       decoration: const BoxDecoration(
         image: DecorationImage(
-            image: AssetImage('assets/images/login.png'), fit: BoxFit.cover),
+            image: AssetImage('assets/images/loginnob.png'), fit: BoxFit.cover),
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -71,7 +71,7 @@ class HomePage extends StatelessWidget {
                       backgroundColor: const Color(0xff4c505b),
                       child: IconButton(
                         color: Colors.white,
-                        onPressed: () {},
+                        onPressed: () => Get.toNamed('/lista'),
                         icon: const Icon(Icons.arrow_forward),
                       ),
                     ),
