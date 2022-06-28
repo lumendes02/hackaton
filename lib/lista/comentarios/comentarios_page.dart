@@ -116,6 +116,7 @@ class ComentarioPage extends GetView<ComentarioController> {
                   '/respostas'),
           body: {"id_pesquisa": id, "resposta": texto, "nome": nome},
           headers: requestHeaders);
+      TextController.text = '';
       controller.findRespostas(id);
     } on Exception catch (e) {
       print(e);

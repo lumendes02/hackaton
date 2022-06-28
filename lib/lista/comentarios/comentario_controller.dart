@@ -24,7 +24,7 @@ class ComentarioController extends GetxController with StateMixin {
       change(dados, status: RxStatus.success());
     } catch (e) {
       print(e);
-      change([], status: RxStatus.error('erro ao buscar lista'));
+      change([], status: RxStatus.error('Esta pequisa não tem comentarios'));
     }
   }
 }
