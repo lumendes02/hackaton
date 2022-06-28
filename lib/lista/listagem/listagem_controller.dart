@@ -16,7 +16,6 @@ class ListagemController extends GetxController with StateMixin {
   Future<void> findLista() async {
     change([], status: RxStatus.loading());
     try {
-      box.write('teste', 'teste');
       final dados = await _listagemRepository.findAllLista();
       change(dados, status: RxStatus.success());
     } catch (e) {

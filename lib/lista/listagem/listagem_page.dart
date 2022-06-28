@@ -28,7 +28,6 @@ class ListagemPage extends GetView<ListagemController> {
           ]),
       backgroundColor: const Color.fromARGB(255, 203, 199, 199),
       body: controller.obx((state) {
-        print(box.read('teste'));
         return ListView.builder(
           itemCount: state.length,
           itemBuilder: (_, index) {
@@ -50,15 +49,15 @@ class ListagemPage extends GetView<ListagemController> {
                   ),
                   title: Text(item.tema_pesquisa),
                   subtitle: Text((() {
-                    if (item.texto.length > 60) {
-                      return _textSelect(item.texto.substring(0, 60)) + '...';
+                    if (item.conteudo.length > 60) {
+                      return item.conteudo.substring(0, 60) + '...';
                     }
-                    return item.texto;
+                    return item.conteudo;
                   })()),
                   onTap: () {
-                    Get.toNamed('/lista/item', arguments: item);
                     box.remove('idpesquisa');
                     box.write('idpesquisa', item.id);
+                    Get.toNamed('/lista/item', arguments: item);
                   },
                   // Get.toNamed('/lista'),
                 ),
@@ -68,7 +67,7 @@ class ListagemPage extends GetView<ListagemController> {
                     Container(
                         margin:
                             const EdgeInsets.only(right: 10.0, bottom: 3.00),
-                        child: Text('18:00'))
+                        child: Text(item.created_at.substring(0, 10)))
                   ],
                 )
               ],
@@ -79,10 +78,5 @@ class ListagemPage extends GetView<ListagemController> {
         return Center(child: Text(error ?? ''));
       }),
     );
-  }
-
-  String _textSelect(String str) {
-    str = str.replaceAll('Ã©', 'é');
-    return str;
   }
 }

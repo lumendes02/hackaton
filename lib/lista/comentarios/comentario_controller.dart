@@ -11,8 +11,9 @@ class ComentarioController extends GetxController with StateMixin {
   void onInit() {
     super.onInit();
     if (box.read('idpesquisa') != null) {
-      String id = box.read('idpesquisa');
-      findRespostas(id);
+      int id = box.read('idpesquisa');
+      String idString = id.toString();
+      findRespostas(idString);
     }
   }
 

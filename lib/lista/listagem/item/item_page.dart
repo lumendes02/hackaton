@@ -1,22 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hackaton/lista/listagem/listagem_controller.dart';
-import 'package:hackaton/model/lista_model.dart';
+import 'package:hackaton/lista/listagem/item/item_controller.dart';
 import 'package:http/http.dart' as http;
 
-class ItemPage extends GetView {
-  postComentario(idpesquisa, comentario) async {
-    try {
-      var response = await http.post(
-          Uri.parse(
-              'https://62b670316999cce2e802b01e.mockapi.io/api/respostas'),
-          body: {"id_pesquisa": idpesquisa, "resposta": comentario});
-      print(response);
-    } on Exception catch (e) {
-      print(e);
-    }
-  }
-
+class ItemPage extends GetView<ItemController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +31,7 @@ class ItemPage extends GetView {
                 margin: const EdgeInsets.only(left: 10.0, top: 5.0),
                 width: 500,
                 color: Color.fromARGB(255, 255, 255, 255),
-                child: Text(Get.arguments.texto),
+                child: Text(Get.arguments.conteudo),
               ),
             ),
             Container(

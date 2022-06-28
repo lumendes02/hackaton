@@ -2,31 +2,32 @@ import 'dart:convert';
 
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 class respostaModel {
-  int id_pesquisa;
+  int id;
   String resposta;
-  String id;
+  int pesquisa_id;
   String nome;
+
   respostaModel({
-    required this.id_pesquisa,
-    required this.resposta,
     required this.id,
+    required this.resposta,
+    required this.pesquisa_id,
     required this.nome,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
-      'id_pesquisa': id_pesquisa,
-      'resposta': resposta,
       'id': id,
+      'resposta': resposta,
+      'pesquisa_id': pesquisa_id,
       'nome': nome,
     };
   }
 
   factory respostaModel.fromMap(Map<String, dynamic> map) {
     return respostaModel(
-      id_pesquisa: map['id_pesquisa'] as int,
+      id: map['id'] as int,
       resposta: map['resposta'] as String,
-      id: map['id'] as String,
+      pesquisa_id: map['pesquisa_id'] as int,
       nome: map['nome'] as String,
     );
   }

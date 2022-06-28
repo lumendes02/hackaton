@@ -1,16 +1,19 @@
 import 'dart:convert';
+import 'package:hackaton/constants.dart';
 import 'package:hackaton/model/resposta_model.dart';
 import 'package:hackaton/repository/i_comentario_repository.dart';
 import 'package:http/http.dart' as http;
 
 class DadosResposta implements IComentarioRepository {
   @override
-  Future<List<respostaModel>> findResposta(String id) async {
-    String url =
-        'https://62b670316999cce2e802b01e.mockapi.io/api/respostas/' + id;
-    print(url);
+  Map<String, String> requestHeaders = {'Authorization': box.read('token')};
+  Future<List<respostaModel>> findResposta(id) async {
     final response = await http.get(
-        Uri.parse('https://62b670316999cce2e802b01e.mockapi.io/api/respostas'));
+        Uri.parse(
+            'https://pesquisa-satisfacao-api.herokuapp.com/api/pesquisas/' +
+                id +
+                '/respostas'),
+        headers: requestHeaders);
     final List<dynamic> responseMap = jsonDecode(response.body);
 
     return responseMap

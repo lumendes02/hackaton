@@ -2,41 +2,37 @@
 import 'dart:convert';
 
 class ListaModel {
-  String id;
-  int id_cliente;
+  int id;
   String tema_pesquisa;
-  String horario;
-  int status;
-  String texto;
+  String conteudo;
+  int cliente_id;
+  String created_at;
 
   ListaModel({
     required this.id,
-    required this.id_cliente,
     required this.tema_pesquisa,
-    required this.horario,
-    required this.status,
-    required this.texto,
+    required this.conteudo,
+    required this.cliente_id,
+    required this.created_at,
   });
 
   Map<String, dynamic> toMap() {
     return <String, dynamic>{
       'id': id,
-      'id_cliente': id_cliente,
       'tema_pesquisa': tema_pesquisa,
-      'horario': horario,
-      'status': status,
-      'texto': texto,
+      'conteudo': conteudo,
+      'cliente_id': cliente_id,
+      'created_at': created_at,
     };
   }
 
   factory ListaModel.fromMap(Map<String, dynamic> map) {
     return ListaModel(
-      id: map['id'] as String,
-      id_cliente: map['id_cliente'] as int,
+      id: map['id'] as int,
       tema_pesquisa: map['tema_pesquisa'] as String,
-      horario: map['horario'] as String,
-      status: map['status'] as int,
-      texto: map['texto'] as String,
+      conteudo: map['conteudo'] as String,
+      cliente_id: map['cliente_id'] as int,
+      created_at: map['created_at'] as String,
     );
   }
 

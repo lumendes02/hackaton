@@ -10,7 +10,6 @@ class DadosItem implements IItemRepository {
     final response = await http.get(Uri.parse(
         'https://62b670316999cce2e802b01e.mockapi.io/api/lista/' + id));
     final ListaModel responseJ = jsonDecode(response.body);
-    print(responseJ);
     return responseJ;
   }
 }

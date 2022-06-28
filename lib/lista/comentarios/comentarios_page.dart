@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hackaton/constants.dart';
 import 'package:hackaton/lista/comentarios/comentario_controller.dart';
 import 'package:hackaton/model/resposta_model.dart';
 import 'package:http/http.dart' as http;
@@ -24,7 +25,7 @@ class ComentarioPage extends GetView<ComentarioController> {
                       context: context,
                       builder: (BuildContext context) {
                         return Container(
-                          height: 115,
+                          height: 175,
                           color: Color.fromARGB(255, 255, 255, 255),
                           child: Center(
                             child: Column(
@@ -47,8 +48,8 @@ class ComentarioPage extends GetView<ComentarioController> {
                                   child: ElevatedButton(
                                     child: const Text('Enviar'),
                                     onPressed: () {
-                                      Navigator.pop(context);
                                       postData(TextController.text);
+                                      Navigator.pop(context);
                                     },
                                   ),
                                 )
@@ -79,10 +80,20 @@ class ComentarioPage extends GetView<ComentarioController> {
                 ),
                 subtitle: Text((() {
                   if (item.resposta.length > 200) {
-                    return _textSelect(item.resposta.substring(0, 200)) + '...';
+                    return item.resposta.substring(0, 200) + '...';
                   }
                   return item.resposta;
                 })()),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    IconButton(
+                        onPressed: () {
+                          deleteData(item.id);
+                        },
+                        icon: Icon(Icons.delete))
+                  ],
+                ),
               ),
             );
           },
@@ -93,18 +104,36 @@ class ComentarioPage extends GetView<ComentarioController> {
     );
   }
 
-  String _textSelect(String str) {
-    str = str.replaceAll('Ã©', 'é');
-    return str;
-  }
-
   postData(texto) async {
     try {
-      var response = http.post(
+      Map<String, String> requestHeaders = {'Authorization': box.read('token')};
+      String id = box.read('idpesquisa').toString();
+      String nome = box.read('nome');
+      var response = await http.post(
           Uri.parse(
-              'https://62b670316999cce2e802b01e.mockapi.io/api/respostas'),
-          body: {"id_pesquisa": 1, "resposta": texto, "nome": "lucas"});
-      return true;
+              'https://pesquisa-satisfacao-api.herokuapp.com/api/clientes/pesquisas/' +
+                  id +
+                  '/respostas'),
+          body: {"id_pesquisa": id, "resposta": texto, "nome": nome},
+          headers: requestHeaders);
+      controller.findRespostas(id);
+    } on Exception catch (e) {
+      print(e);
+      return false;
+    }
+  }
+
+  deleteData(idint) async {
+    try {
+      Map<String, String> requestHeaders = {'Authorization': box.read('token')};
+      String id = box.read('idpesquisa').toString();
+      String idresposta = idint.toString();
+      var response = await http.delete(
+          Uri.parse(
+              'https://pesquisa-satisfacao-api.herokuapp.com/api/respostas/' +
+                  idresposta),
+          headers: requestHeaders);
+      controller.findRespostas(id);
     } on Exception catch (e) {
       print(e);
       return false;
