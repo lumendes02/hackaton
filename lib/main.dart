@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       initialRoute: '/login',
       getPages: [
         GetPage(
@@ -21,7 +22,7 @@ class MyApp extends StatelessWidget {
           page: () => HomePage(),
         ),
         ListaAccessModule(),
-        respostasAccessModule()
+        respostasAccessModule(),
       ],
     );
   }

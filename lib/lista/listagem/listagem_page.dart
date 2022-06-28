@@ -34,29 +34,45 @@ class ListagemPage extends GetView<ListagemController> {
           itemBuilder: (_, index) {
             final ListaModel item = state[index];
             return Card(
-              child: ListTile(
-                leading: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    minWidth: 44,
-                    minHeight: 44,
-                    maxWidth: 54,
-                    maxHeight: 54,
+                child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                ListTile(
+                  leading: ConstrainedBox(
+                    constraints: const BoxConstraints(
+                      minWidth: 44,
+                      minHeight: 44,
+                      maxWidth: 54,
+                      maxHeight: 54,
+                    ),
+                    child:
+                        Image.asset('assets/images/bb.png', fit: BoxFit.cover),
                   ),
-                  child: Image.asset('assets/images/bb.png', fit: BoxFit.cover),
+                  title: Text(item.tema_pesquisa),
+                  subtitle: Text((() {
+                    if (item.texto.length > 60) {
+                      return _textSelect(item.texto.substring(0, 60)) + '...';
+                    }
+                    return item.texto;
+                  })()),
+                  onTap: () {
+                    Get.toNamed('/lista/item', arguments: item);
+                    box.remove('idpesquisa');
+                    box.write('idpesquisa', item.id);
+                  },
+                  // Get.toNamed('/lista'),
                 ),
-                title: Text(item.tema_pesquisa),
-                subtitle: Text((() {
-                  if (item.texto.length > 60) {
-                    return _textSelect(item.texto.substring(0, 60)) + '...';
-                  }
-                  return item.texto;
-                })()),
-                onTap: () {
-                  Get.toNamed('/lista/item', arguments: item);
-                },
-                // Get.toNamed('/lista'),
-              ),
-            );
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Container(
+                        margin:
+                            const EdgeInsets.only(right: 10.0, bottom: 3.00),
+                        child: Text('18:00'))
+                  ],
+                )
+              ],
+            ));
           },
         );
       }, onError: (error) {

@@ -5,11 +5,16 @@ import 'package:http/http.dart' as http;
 
 class DadosResposta implements IComentarioRepository {
   @override
-  Future<respostaModel> findResposta() async {
+  Future<List<respostaModel>> findResposta(String id) async {
+    String url =
+        'https://62b670316999cce2e802b01e.mockapi.io/api/respostas/' + id;
+    print(url);
     final response = await http.get(
         Uri.parse('https://62b670316999cce2e802b01e.mockapi.io/api/respostas'));
-    final respostaModel responseJ = jsonDecode(response.body);
-    print(response);
-    return responseJ;
+    final List<dynamic> responseMap = jsonDecode(response.body);
+
+    return responseMap
+        .map<respostaModel>((resp) => respostaModel.fromMap(resp))
+        .toList();
   }
 }

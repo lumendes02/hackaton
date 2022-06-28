@@ -21,7 +21,7 @@ class ItemPage extends GetView {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('',
+          title: const Text('Pesquisa',
               style: TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
           automaticallyImplyLeading: true,
           backgroundColor: Color.fromARGB(255, 0, 0, 0),
@@ -30,25 +30,26 @@ class ItemPage extends GetView {
           children: [
             Container(
               height: 50,
-              color: Color.fromARGB(255, 61, 61, 61),
+              color: const Color.fromARGB(255, 203, 199, 199),
               child: Center(
                 child: Text(Get.arguments.tema_pesquisa,
                     style: const TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.bold,
-                        color: Color.fromARGB(255, 255, 255, 255))),
+                        color: Color.fromARGB(255, 0, 0, 0))),
               ),
             ),
             Expanded(
               child: Container(
+                margin: const EdgeInsets.only(left: 10.0, top: 5.0),
                 width: 500,
-                color: Color.fromARGB(255, 211, 211, 211),
+                color: Color.fromARGB(255, 255, 255, 255),
                 child: Text(Get.arguments.texto),
               ),
             ),
             Container(
-                width: 500,
-                color: Color.fromARGB(255, 61, 61, 61),
+                height: 50,
+                color: const Color.fromARGB(255, 203, 199, 199),
                 child: Row(
                   children: [
                     Expanded(
@@ -57,7 +58,7 @@ class ItemPage extends GetView {
                         style: TextButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 15),
-                          primary: Color.fromARGB(255, 255, 255, 255),
+                          primary: Color.fromARGB(255, 0, 0, 0),
                           textStyle: const TextStyle(fontSize: 20),
                         ),
                         onPressed: () {
