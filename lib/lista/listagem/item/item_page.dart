@@ -11,7 +11,7 @@ class ItemPage extends GetView<ItemController> {
           title: const Text('Pesquisa',
               style: TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
           automaticallyImplyLeading: true,
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         ),
         body: Column(
           children: [
@@ -30,7 +30,7 @@ class ItemPage extends GetView<ItemController> {
               child: Container(
                 margin: const EdgeInsets.only(left: 10.0, top: 5.0),
                 width: 500,
-                color: Color.fromARGB(255, 255, 255, 255),
+                color: const Color.fromARGB(255, 255, 255, 255),
                 child: Text(Get.arguments.conteudo),
               ),
             ),
@@ -45,7 +45,7 @@ class ItemPage extends GetView<ItemController> {
                         style: TextButton.styleFrom(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 15),
-                          primary: Color.fromARGB(255, 0, 0, 0),
+                          primary: const Color.fromARGB(255, 0, 0, 0),
                           textStyle: const TextStyle(fontSize: 20),
                         ),
                         onPressed: () {

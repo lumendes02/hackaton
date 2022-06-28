@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hackaton/constants.dart';
 import 'package:hackaton/lista/litagem_resposatas/respostas_controller.dart';
 import 'package:hackaton/model/resposta_model.dart';
+import 'package:http/http.dart' as http;
 
 class RespostasPage extends GetView<RespostaController> {
   @override
@@ -27,7 +29,16 @@ class RespostasPage extends GetView<RespostaController> {
                   }
                   return item.resposta;
                 })()),
-                // Get.toNamed('/lista'),
+                trailing: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    IconButton(
+                        onPressed: () {
+                          deleteData(item.id);
+                        },
+                        icon: Icon(Icons.delete))
+                  ],
+                ),
               ),
             );
           },
@@ -41,5 +52,22 @@ class RespostasPage extends GetView<RespostaController> {
   String _textSelect(String str) {
     str = str.replaceAll('Ã©', 'é');
     return str;
+  }
+
+  deleteData(idint) async {
+    try {
+      Map<String, String> requestHeaders = {'Authorization': box.read('token')};
+      String id = box.read('idpesquisa').toString();
+      String idresposta = idint.toString();
+      var response = await http.delete(
+          Uri.parse(
+              'https://pesquisa-satisfacao-api.herokuapp.com/api/respostas/' +
+                  idresposta),
+          headers: requestHeaders);
+      controller.findRespostas();
+    } on Exception catch (e) {
+      print(e);
+      return false;
+    }
   }
 }

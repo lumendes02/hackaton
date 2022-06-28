@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hackaton/constants.dart';
-import 'package:hackaton/model/login_model.dart';
-import 'package:hackaton/model/resposta_model.dart';
 import 'package:http/http.dart' as http;
 
 class HomePage extends StatelessWidget {

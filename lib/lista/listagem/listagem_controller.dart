@@ -20,7 +20,7 @@ class ListagemController extends GetxController with StateMixin {
       change(dados, status: RxStatus.success());
     } catch (e) {
       print(e);
-      change([], status: RxStatus.error('erro ao buscar lista'));
+      change([], status: RxStatus.error('Nao tem pesquisas atualmente'));
     }
   }
 }

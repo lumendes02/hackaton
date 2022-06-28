@@ -15,7 +15,7 @@ class ComentarioPage extends GetView<ComentarioController> {
           title: const Text('Comentarios',
               style: TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
           automaticallyImplyLeading: true,
-          backgroundColor: Color.fromARGB(255, 0, 0, 0),
+          backgroundColor: const Color.fromARGB(255, 0, 0, 0),
           actions: <Widget>[
             Padding(
                 padding: const EdgeInsets.only(right: 20.0),
@@ -26,7 +26,7 @@ class ComentarioPage extends GetView<ComentarioController> {
                       builder: (BuildContext context) {
                         return Container(
                           height: 175,
-                          color: Color.fromARGB(255, 255, 255, 255),
+                          color: const Color.fromARGB(255, 255, 255, 255),
                           child: Center(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -91,7 +91,7 @@ class ComentarioPage extends GetView<ComentarioController> {
                         onPressed: () {
                           deleteData(item.id);
                         },
-                        icon: Icon(Icons.delete))
+                        icon: const Icon(Icons.delete))
                   ],
                 ),
               ),
